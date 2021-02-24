@@ -636,7 +636,7 @@ double datatyp (int rank, int N, int P, double** arr, double ** new_arr)
 
     double stime = MPI_Wtime();
 
-	for (int q = 0; q < 1; ++q) {
+	for (int q = 0; q < 50; ++q) {
 
       //communication
 

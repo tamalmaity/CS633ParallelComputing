@@ -636,7 +636,7 @@ double datatyp (int rank, int N, int P, double** arr, double ** new_arr)
 
     double stime = MPI_Wtime();
 
-	for (int q = 0; q < 1; ++q) {
+	for (int q = 0; q < 50; ++q) {
 
       //communication
 
@@ -852,8 +852,8 @@ int main(int argc, char* argv[])
 	{
 		for (int j=0;j<N;j++)
 		{
-		  arr[i][j] = (double)(rand())/RAND_MAX;
-                 //arr[i][j] = rank*(i+j);
+		  //arr[i][j] = (double)(rand())/RAND_MAX;
+                 arr[i][j] = rank*(i+j);
 		}
 	}
      
@@ -866,7 +866,16 @@ int main(int argc, char* argv[])
   		{
   			printf ("Time taken for Multiple Send_Receives : %lf \n",maxTime);
   			fprintf (fptr, "Send_Receive, N = %d, time = %lf \n",N, maxTime);
+
+        printf("Send/Recv\n");
+      for (int i=0;i<N;i++)
+      {
+        for (int j=0;j<N;j++) printf("%lf ", arr[i][j]);
+          printf("\n");
+      }
   		}
+
+      
 
   	
 
@@ -879,8 +888,8 @@ int main(int argc, char* argv[])
 	{
 		for (int j=0;j<N;j++)
 		{
-		  arr[i][j] = (double)(rand())/RAND_MAX;
-                   //arr[i][j] = rank*(i+j);
+		  //arr[i][j] = (double)(rand())/RAND_MAX;
+                   arr[i][j] = rank*(i+j);
 		}
 	}
     
@@ -891,7 +900,17 @@ int main(int argc, char* argv[])
   		{
   			printf ("Time taken for Pack_Unpack : %lf \n", maxTime);
   			fprintf (fptr, "Pack_Unpack, N = %d, time = %lf \n",N, maxTime);
+
+        printf("Pack/Unpack\n");
+      for (int i=0;i<N;i++)
+      {
+        for (int j=0;j<N;j++) printf("%lf ", arr[i][j]);
+          printf("\n");
+      }
   		}
+
+      
+
 
 
 
@@ -903,8 +922,8 @@ int main(int argc, char* argv[])
 	{
 		for (int j=0;j<N;j++)
 		{
-		  arr[i][j] = (double)(rand())/RAND_MAX;
-                   //arr[i][j] = rank*(i+j);
+		  //arr[i][j] = (double)(rand())/RAND_MAX;
+                   arr[i][j] = rank*(i+j);
 		}
 	}
      
@@ -917,7 +936,17 @@ int main(int argc, char* argv[])
     		fprintf (fptr, "Datatype, N = %d, time = %lf \n",N, maxTime);
 
     		fclose(fptr);
+
+        printf("Datatype\n");
+      for (int i=0;i<N;i++)
+      {
+        for (int j=0;j<N;j++) printf("%lf ", arr[i][j]);
+          printf("\n");
+      }
+
     	}
+
+      
 
     MPI_Finalize();
 
